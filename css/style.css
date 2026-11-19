@@ -225,6 +225,82 @@ ul, ol { list-style: none; }
 .header__actions { display: flex; align-items: center; gap: 12px; }
 
 /* --- Перемикач мов --- */
+.lang { position: relative; }
+
+.lang__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 13px;
+  transition: border-color var(--t-fast) var(--ease), background-color var(--t-fast) var(--ease);
+}
+.lang__toggle:hover { border-color: rgba(255, 255, 255, 0.32); background: rgba(255, 255, 255, 0.03); }
+
+.lang__code {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.lang__native { color: var(--text-muted); }
+.lang__chevron {
+  color: var(--text-dim);
+  transition: transform var(--t-base) var(--ease);
+}
+.lang.is-open .lang__chevron { transform: rotate(180deg); }
+
+.lang__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 220px;
+  padding: 6px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity var(--t-fast) var(--ease),
+              transform var(--t-base) var(--ease),
+              visibility 0s linear var(--t-base);
+}
+.lang.is-open .lang__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.lang__option {
+  display: grid;
+  grid-template-columns: 34px 1fr 14px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 2px;
+  font-size: 14px;
+  color: var(--text-muted);
+  cursor: pointer;
+  outline: none;
+  transition: background-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.lang__option:hover,
+.lang__option:focus-visible { background: rgba(255, 255, 255, 0.05); color: var(--text); }
+.lang__option-code {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+.lang__check { color: var(--accent); opacity: 0; transform: scale(0.6); transition: all var(--t-base) var(--ease); }
+.lang__option.is-active { color: var(--text); }
+.lang__option.is-active .lang__option-code { color: var(--accent); }
+.lang__option.is-active .lang__check { opacity: 1; transform: scale(1); }
 
 /* --- Бургер (мобільний) --- */
 .burger {
@@ -747,6 +823,16 @@ ul, ol { list-style: none; }
 .modal__fallback:hover { color: var(--text); }
 
 /* ---------- 12. Анімації ---------- */
+
+/* Плавне згасання тексту під час зміни мови */
+[data-i18n],
+.lang__toggle span {
+  transition: opacity var(--t-fast) var(--ease);
+}
+.is-switching [data-i18n],
+.is-switching .lang__toggle span,
+.is-switching [data-count],
+.is-switching [data-money] { opacity: 0; }
 
 /* Китайська: без розрядки й uppercase-ефектів, що не мають сенсу для ієрогліфів */
 :root[data-lang="zh"] .section__title,
