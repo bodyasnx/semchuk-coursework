@@ -330,6 +330,66 @@
     nav.addEventListener("click", (e) => { if (e.target.closest("a")) toggleMenu(false); });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") toggleMenu(false); });
   }
+
+
+  /* =========================================================
+     7. МОДАЛЬНЕ ВІКНО З ТРЕЙЛЕРОМ
+     ========================================================= */
+  function initTrailer() {
+    const modal = document.getElementById("trailerModal");
+    const frame = document.getElementById("trailerFrame");
+    const fallback = document.getElementById("trailerFallback");
+    let lastFocused = null;
+
+    fallback.href = TRAILER_VIDEO_ID
+      ? `https://www.youtube.com/watch?v=${TRAILER_VIDEO_ID}`
+      : TRAILER_SEARCH_URL;
+
+    function open() {
+      // Без ID відео — просто відкриваємо YouTube у новій вкладці
+      if (!TRAILER_VIDEO_ID) {
+        window.open(TRAILER_SEARCH_URL, "_blank", "noopener");
+        return;
+      }
+      lastFocused = document.activeElement;
+      const hl = currentLang === "zh" ? "zh-CN" : currentLang;
+      frame.innerHTML =
+        `<iframe src="https://www.youtube-nocookie.com/embed/${TRAILER_VIDEO_ID}?autoplay=1&rel=0&hl=${hl}&cc_lang_pref=${hl}"
+                 title="Spider-Man: Brand New Day — trailer"
+                 allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                 allowfullscreen></iframe>`;
+      modal.hidden = false;
+      requestAnimationFrame(() => modal.classList.add("is-open"));
+      document.body.classList.add("modal-open");
+      modal.querySelector(".modal__close").focus();
+    }
+
+    function close() {
+      modal.classList.remove("is-open");
+      document.body.classList.remove("modal-open");
+      window.setTimeout(() => {
+        modal.hidden = true;
+        frame.innerHTML = ""; // зупиняє відео
+      }, reduceMotion ? 0 : 250);
+      if (lastFocused) lastFocused.focus();
+    }
+
+    document.querySelectorAll("[data-trailer-open]").forEach((b) => b.addEventListener("click", open));
+    modal.querySelectorAll("[data-trailer-close]").forEach((b) => b.addEventListener("click", close));
+
+    modal.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { e.preventDefault(); close(); }
+      if (e.key === "Tab") {
+        // утримуємо фокус усередині модального вікна
+        const focusables = modal.querySelectorAll("button, a[href], iframe");
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  }
+
   /* =========================================================
      ІНІЦІАЛІЗАЦІЯ
      ========================================================= */
