@@ -60,10 +60,16 @@
     <!-- ===================== HERO ===================== -->
     <section class="hero" id="hero">
       <div class="container">
-        <figure class="hero__media reveal">
-          <img src="assets/hero-banner.jpg" width="2400" height="1350"
-               data-i18n-alt="hero.imgAlt"
-               alt="Людина-павук лежить на сталевій балці хмарочоса над Нью-Йорком і дивиться в телефон">
+        <figure class="hero__media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/hero-banner-800.webp 800w, assets/hero-banner-1400.webp 1400w, assets/hero-banner-2400.webp 2400w"
+                    sizes="(max-width: 1240px) calc(100vw - 40px), 1144px">
+            <img src="assets/hero-banner.jpg" width="2400" height="1350"
+                 fetchpriority="high" decoding="async"
+                 data-i18n-alt="hero.imgAlt"
+                 alt="Людина-павук лежить на сталевій балці хмарочоса над Нью-Йорком і дивиться в телефон">
+          </picture>
         </figure>
 
         <div class="hero__content">
@@ -153,8 +159,11 @@
         <div class="cards">
           <article class="card reveal">
             <div class="card__media">
-              <img src="assets/spiderman.jpg" width="736" height="1308" loading="lazy"
-                   data-i18n-alt="char.spidey.alt" alt="Пітер Паркер у зеленій куртці серед натовпу фанатів Людини-павука">
+              <picture>
+                <source type="image/webp" srcset="assets/spiderman-400.webp 400w, assets/spiderman-736.webp 736w" sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 1100px) 45vw, 280px">
+                <img src="assets/spiderman.jpg" width="736" height="1308" loading="lazy" decoding="async"
+                     data-i18n-alt="char.spidey.alt" alt="Пітер Паркер у зеленій куртці серед натовпу фанатів Людини-павука">
+              </picture>
             </div>
             <div class="card__body">
               <p class="card__role" data-i18n="char.spidey.role">Головний герой</p>
@@ -166,8 +175,11 @@
 
           <article class="card reveal">
             <div class="card__media">
-              <img src="assets/jean-grey.jpg" width="736" height="736" loading="lazy"
-                   data-i18n-alt="char.jean.alt" alt="Джин Ґрей із рудим волоссям тримає рацію біля обличчя">
+              <picture>
+                <source type="image/webp" srcset="assets/jean-grey-400.webp 400w, assets/jean-grey-736.webp 736w" sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 1100px) 45vw, 280px">
+                <img src="assets/jean-grey.jpg" width="736" height="736" loading="lazy" decoding="async"
+                     data-i18n-alt="char.jean.alt" alt="Джин Ґрей із рудим волоссям тримає рацію біля обличчя">
+              </picture>
             </div>
             <div class="card__body">
               <p class="card__role" data-i18n="char.jean.role">Загадкова телепатка</p>
@@ -179,8 +191,11 @@
 
           <article class="card reveal">
             <div class="card__media">
-              <img src="assets/punisher.jpg" width="736" height="736" loading="lazy"
-                   data-i18n-alt="char.punisher.alt" alt="Френк Касл у тактичному бронежилеті з черепом біля цегляної стіни">
+              <picture>
+                <source type="image/webp" srcset="assets/punisher-400.webp 400w, assets/punisher-736.webp 736w" sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 1100px) 45vw, 280px">
+                <img src="assets/punisher.jpg" width="736" height="736" loading="lazy" decoding="async"
+                     data-i18n-alt="char.punisher.alt" alt="Френк Касл у тактичному бронежилеті з черепом біля цегляної стіни">
+              </picture>
             </div>
             <div class="card__body">
               <p class="card__role" data-i18n="char.punisher.role">Непередбачуваний союзник</p>
@@ -192,8 +207,11 @@
 
           <article class="card reveal">
             <div class="card__media">
-              <img src="assets/mj.jpg" width="736" height="1014" loading="lazy"
-                   data-i18n-alt="char.mj.alt" alt="Мішель Джонс у темній сукні стоїть у тьмяно освітленому приміщенні">
+              <picture>
+                <source type="image/webp" srcset="assets/mj-400.webp 400w, assets/mj-736.webp 736w" sizes="(max-width: 560px) calc(100vw - 40px), (max-width: 1100px) 45vw, 280px">
+                <img src="assets/mj.jpg" width="736" height="1014" loading="lazy" decoding="async"
+                     data-i18n-alt="char.mj.alt" alt="Мішель Джонс у темній сукні стоїть у тьмяно освітленому приміщенні">
+              </picture>
             </div>
             <div class="card__body">
               <p class="card__role" data-i18n="char.mj.role">Стара знайома</p>
@@ -217,8 +235,11 @@
 
         <div class="director">
           <figure class="director__media reveal">
-            <img src="assets/director.jpg" width="736" height="669" loading="lazy"
-                 data-i18n-alt="director.alt" alt="Режисер Дестін Деніел Креттон на знімальному майданчику поруч із Людиною-павуком">
+            <picture>
+              <source type="image/webp" srcset="assets/director-400.webp 400w, assets/director-736.webp 736w" sizes="(max-width: 900px) calc(100vw - 40px), 560px">
+              <img src="assets/director.jpg" width="736" height="669" loading="lazy" decoding="async"
+                   data-i18n-alt="director.alt" alt="Режисер Дестін Деніел Креттон на знімальному майданчику поруч із Людиною-павуком">
+            </picture>
           </figure>
           <div class="director__text reveal">
             <p class="card__role" data-i18n="director.role">Режисер</p>
