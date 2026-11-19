@@ -745,3 +745,13 @@ ul, ol { list-style: none; }
   border-top: 1px solid var(--line);
 }
 .modal__fallback:hover { color: var(--text); }
+
+/* ---------- 12. Анімації ---------- */
+
+/* Китайська: без розрядки й uppercase-ефектів, що не мають сенсу для ієрогліфів */
+:root[data-lang="zh"] .section__title,
+:root[data-lang="zh"] .trailer__title,
+:root[data-lang="zh"] .card__name,
+:root[data-lang="zh"] .pillar__title,
+:root[data-lang="zh"] .director__name,
+:root[data-lang="zh"] .record__title { font-weight: 700; letter-spacing: 0.02em; line-height: 1.2; }
