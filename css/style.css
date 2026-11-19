@@ -823,6 +823,15 @@ ul, ol { list-style: none; }
 .modal__fallback:hover { color: var(--text); }
 
 /* ---------- 12. Анімації ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Без JS контент має бути видимим */
+html:not(.is-ready) .reveal { opacity: 1; transform: none; }
 
 /* Плавне згасання тексту під час зміни мови */
 [data-i18n],

@@ -272,13 +272,75 @@
   }
 
   /* =========================================================
+     5. SCROLL-REVEAL
+     ========================================================= */
+  function initReveal() {
+    const items = document.querySelectorAll(".reveal");
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      items.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+    // невелика затримка для елементів у тій самій сітці (каскад)
+    items.forEach((el) => {
+      const siblings = el.parentElement ? Array.from(el.parentElement.children).filter((c) => c.classList.contains("reveal")) : [];
+      const idx = siblings.indexOf(el);
+      if (idx > 0) el.style.transitionDelay = `${Math.min(idx, 5) * 80}ms`;
+      io.observe(el);
+    });
+  }
+
+  /* =========================================================
+     6. ХЕДЕР, НАВІГАЦІЯ, МОБІЛЬНЕ МЕНЮ
+     ========================================================= */
+  function initHeader() {
+    const header = document.getElementById("header");
+    const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Активне посилання відповідно до секції у видимій області
+    const links = Array.from(document.querySelectorAll(".nav__link"));
+    const sections = links.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          links.forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === `#${entry.target.id}`));
+        });
+      }, { rootMargin: "-45% 0px -50% 0px" });
+      sections.forEach((s) => io.observe(s));
+    }
+
+    // Мобільне меню
+    const burger = document.getElementById("burger");
+    const nav = document.getElementById("nav");
+    const toggleMenu = (open) => {
+      document.body.classList.toggle("menu-open", open);
+      burger.setAttribute("aria-expanded", String(open));
+    };
+    burger.addEventListener("click", () => toggleMenu(!document.body.classList.contains("menu-open")));
+    nav.addEventListener("click", (e) => { if (e.target.closest("a")) toggleMenu(false); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") toggleMenu(false); });
+  }
+  /* =========================================================
      ІНІЦІАЛІЗАЦІЯ
      ========================================================= */
   function init() {
     buildSwitcher();
     currentLang = readStoredLang() || DEFAULT_LANG; // перший візит → українська
     applyTranslations(currentLang);
+    initHeader();
+    initReveal();
     initCounters();
+    root.classList.add("is-ready");
   }
 
   // доступ із консолі для демонстрації: setLanguage("en")
