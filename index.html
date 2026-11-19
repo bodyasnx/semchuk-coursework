@@ -16,6 +16,33 @@
 <body>
   <a class="skip-link" href="#main" data-i18n="a11y.skip">Перейти до вмісту</a>
 
+  <!-- ===================== HEADER ===================== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a class="wordmark" href="#hero" data-i18n-aria-label="nav.home" aria-label="На головну">
+        <span class="wordmark__accent">Spider-Man</span><span class="wordmark__sep">:</span> Brand New Day
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Main">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#story" data-i18n="nav.story">Сюжет</a></li>
+          <li><a class="nav__link" href="#characters" data-i18n="nav.characters">Персонажі</a></li>
+          <li><a class="nav__link" href="#production" data-i18n="nav.production">Зйомки</a></li>
+          <li><a class="nav__link" href="#box-office" data-i18n="nav.boxoffice">Касові збори</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <!-- Language switcher -->
+
+        <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav"
+                data-i18n-aria-label="nav.menu" aria-label="Меню">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
   <main id="main">
   </main>
 
