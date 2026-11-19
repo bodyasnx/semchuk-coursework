@@ -400,6 +400,7 @@
     initHeader();
     initReveal();
     initCounters();
+    initTrailer();
     root.classList.add("is-ready");
   }
 
