@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#090a0f"/>
+  <!-- нитка павутини -->
+  <path d="M32 0v22" stroke="#f2f2f4" stroke-width="1.6" stroke-linecap="round"/>
+  <g fill="none" stroke="#e62429" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- ліві лапки -->
+    <path d="M27 30 L17 24 L13 30"/>
+    <path d="M26 34 L15 33 L11 40"/>
+    <path d="M26 38 L16 42 L14 50"/>
+    <path d="M27 42 L20 50 L21 57"/>
+    <!-- праві лапки -->
+    <path d="M37 30 L47 24 L51 30"/>
+    <path d="M38 34 L49 33 L53 40"/>
+    <path d="M38 38 L48 42 L50 50"/>
+    <path d="M37 42 L44 50 L43 57"/>
+  </g>
+  <!-- тіло: голова й черевце -->
+  <circle cx="32" cy="27" r="5.2" fill="#e62429"/>
+  <circle cx="32" cy="39.5" r="9" fill="#e62429"/>
+</svg>
