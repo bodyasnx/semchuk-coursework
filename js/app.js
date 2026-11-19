@@ -191,8 +191,84 @@
   /* =========================================================
      3. ФОРМАТУВАННЯ ГРОШЕЙ (Intl, залежить від мови)
      ========================================================= */
+  function formatMoney(value) {
+    const { locale } = getLangMeta(currentLang);
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency: "USD",
+      currencyDisplay: "narrowSymbol", // "$", а не "USD" / "US$"
+      notation: "compact",
+      maximumSignificantDigits: 3 // 360M, 2.5B, 3.6亿 — без втрати точності
+    }).format(value);
+  }
+
   function updateMoney() {
-    // буде реалізовано в наступному коміті
+    // статичні суми (бюджет)
+    document.querySelectorAll("[data-money]").forEach((el) => {
+      el.textContent = formatMoney(Number(el.dataset.money));
+    });
+    // лічильники, які вже завершили анімацію (або ще не почали)
+    document.querySelectorAll("[data-count]").forEach((el) => {
+      if (el.dataset.animating === "true") return;
+      const value = el.dataset.done === "true" ? Number(el.dataset.count) : 0;
+      el.textContent = formatMoney(value);
+    });
+  }
+
+  /* =========================================================
+     4. COUNT-UP АНІМАЦІЯ
+     ========================================================= */
+  const easeOutCubic = (x) => 1 - Math.pow(1 - x, 3);
+
+  function animateCount(el) {
+    const target = Number(el.dataset.count);
+    if (reduceMotion) {
+      el.dataset.done = "true";
+      el.textContent = formatMoney(target);
+      return;
+    }
+    el.dataset.animating = "true";
+    const start = performance.now();
+    function frame(now) {
+      const p = Math.min((now - start) / COUNT_MS, 1);
+      // округлюємо до мільйона, щоб цифри не «тремтіли»
+      const value = Math.round((target * easeOutCubic(p)) / 1e6) * 1e6;
+      el.textContent = formatMoney(value);
+      if (p < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        el.dataset.animating = "false";
+        el.dataset.done = "true";
+        el.textContent = formatMoney(target);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function initCounters() {
+    const box = document.getElementById("box-office");
+    if (!box) return;
+    const counters = box.querySelectorAll("[data-count]");
+    if (!("IntersectionObserver" in window)) {
+      counters.forEach(animateCount);
+      return;
+    }
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        animateCount(entry.target);
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach((c) => io.observe(c));
+
+    // смуга співвідношення заповнюється при появі
+    const split = box.querySelector(".split");
+    if (split) {
+      new IntersectionObserver((entries, obs) => {
+        if (entries[0].isIntersecting) { split.classList.add("is-filled"); obs.disconnect(); }
+      }, { threshold: 0.5 }).observe(split);
+    }
   }
 
   /* =========================================================
@@ -202,6 +278,7 @@
     buildSwitcher();
     currentLang = readStoredLang() || DEFAULT_LANG; // перший візит → українська
     applyTranslations(currentLang);
+    initCounters();
   }
 
   // доступ із консолі для демонстрації: setLanguage("en")
