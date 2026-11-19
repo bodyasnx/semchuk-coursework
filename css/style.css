@@ -278,6 +278,24 @@ ul, ol { list-style: none; }
 :root[data-theme="light"] .theme-toggle__icon--sun { opacity: 0; transform: rotate(90deg) scale(0.6); }
 :root[data-theme="light"] .theme-toggle__icon--moon { opacity: 1; transform: none; }
 
+/* --- Індикатор прокручування --- */
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  pointer-events: none;
+}
+.progress__bar {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
 /* --- Перемикач мов --- */
 .lang { position: relative; }
 

@@ -317,9 +317,25 @@
      ========================================================= */
   function initHeader() {
     const header = document.getElementById("header");
-    const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 12);
-    onScroll();
+    const progressBar = document.getElementById("progressBar");
+    let ticking = false;
+
+    const update = () => {
+      const y = window.scrollY;
+      header.classList.toggle("is-scrolled", y > 12);
+      // частка прокрученої сторінки: 0 → 1
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? Math.min(y / max, 1) : 0;
+      if (progressBar) progressBar.style.transform = `scaleX(${progress})`;
+      ticking = false;
+    };
+    // оновлюємо не частіше одного разу за кадр
+    const onScroll = () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
 
     // Активне посилання відповідно до секції у видимій області
     const links = Array.from(document.querySelectorAll(".nav__link"));
