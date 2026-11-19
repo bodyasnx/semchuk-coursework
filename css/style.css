@@ -340,10 +340,7 @@ ul, ol { list-style: none; }
   height: 100%;
   object-fit: cover;
   /* без фільтрів і накладок — зображення чисте */
-  transform: scale(1.04);
-  transition: transform 1.8s var(--ease);
 }
-.hero__media.is-visible img { transform: scale(1); }
 
 .hero__content {
   display: grid;
@@ -940,5 +937,4 @@ html:not(.is-ready) .reveal { opacity: 1; transform: none; }
     transition-delay: 0s !important;
   }
   .reveal { opacity: 1; transform: none; }
-  .hero__media img { transform: none; }
 }

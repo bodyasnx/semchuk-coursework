@@ -59,6 +59,17 @@
     try { localStorage.setItem(STORAGE_KEY, code); } catch (e) { /* ігноруємо */ }
   }
 
+    /** Шрифт з ієрогліфами важкий, тому підвантажуємо його лише для китайської. */
+  const CJK_FONT_URL = "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap";
+  function ensureCjkFont() {
+    if (document.getElementById("font-cjk")) return;
+    const link = document.createElement("link");
+    link.id = "font-cjk";
+    link.rel = "stylesheet";
+    link.href = CJK_FONT_URL;
+    document.head.appendChild(link);
+  }
+
   /** Підставляє переклади в усі елементи з data-i18n-атрибутами. */
   function applyTranslations(lang) {
     document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -70,6 +81,8 @@
     document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
       el.setAttribute("aria-label", t(el.dataset.i18nAriaLabel, lang));
     });
+
+    if (lang === "zh") ensureCjkFont();
 
     const meta = getLangMeta(lang);
     root.setAttribute("lang", meta.htmlLang);

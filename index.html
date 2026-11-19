@@ -9,7 +9,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Шрифти вантажаться без блокування рендерингу; Noto Sans SC — лише для китайської (див. app.js) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap"></noscript>
+
+  <!-- Головне зображення першого екрана завантажується якнайраніше -->
+  <link rel="preload" as="image" type="image/webp"
+        imagesrcset="assets/hero-banner-800.webp 800w, assets/hero-banner-1400.webp 1400w, assets/hero-banner-2400.webp 2400w"
+        imagesizes="(max-width: 1240px) calc(100vw - 40px), 1144px" fetchpriority="high">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
