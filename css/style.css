@@ -528,3 +528,101 @@ ul, ol { list-style: none; }
   text-transform: uppercase;
 }
 .stat__detail { margin-top: 12px; font-size: 14px; color: var(--text-muted); }
+
+/* ---------- 10. Касові збори ---------- */
+.box__total {
+  padding: 8px 0 48px;
+}
+.box__total-value {
+  margin-top: 12px;
+  font-family: "Oswald", "Noto Sans SC", sans-serif;
+  font-size: clamp(44px, 12vw, 172px);
+  white-space: nowrap;
+  font-weight: 600;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+.box__total-value sup {
+  font-size: 0.4em;
+  color: var(--accent);
+  vertical-align: top;
+  margin-left: 4px;
+}
+
+.split { margin-top: 56px; }
+.split__bar {
+  display: flex;
+  height: 6px;
+  margin-top: 16px;
+  background: var(--line);
+  overflow: hidden;
+}
+.split__part {
+  width: 0;
+  transition: width 1.4s var(--ease);
+}
+.split.is-filled .split__part { width: var(--w); }
+.split__part--domestic { background: var(--accent); }
+.split__part--intl { background: rgba(255, 255, 255, 0.55); transition-delay: 0.25s; }
+.split__legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.split__legend > span { display: inline-flex; align-items: center; gap: 8px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.55); display: inline-block; }
+.dot--accent { background: var(--accent); }
+
+.record {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  margin-top: clamp(64px, 8vw, 112px);
+  padding-top: 48px;
+  border-top: 1px solid var(--line);
+}
+.record__rank {
+  display: block;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(72px, 9vw, 128px);
+  font-weight: 700;
+  line-height: 0.9;
+  color: var(--accent);
+}
+.record__title {
+  margin: 20px 0 18px;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.6vw, 36px);
+  font-weight: 500;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+.record__text p { color: var(--text-muted); max-width: 56ch; }
+
+.milestones li {
+  position: relative;
+  padding: 18px 0 18px 28px;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+}
+.milestones li:first-child { border-top: 1px solid var(--line); }
+.milestones li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 12px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.box__note {
+  margin-top: 40px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
