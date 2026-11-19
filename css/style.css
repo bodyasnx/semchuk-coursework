@@ -455,3 +455,76 @@ ul, ol { list-style: none; }
 }
 .card__actor strong { color: var(--text-muted); font-weight: 500; }
 .card__bio { margin-top: 16px; font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+
+/* ---------- 9. Зйомки ---------- */
+.director {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+.director__media {
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.director__media img { width: 100%; }
+
+.director__name {
+  margin: 12px 0 24px;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.4vw, 46px);
+  font-weight: 600;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.director__text p:not(.card__role) { color: var(--text-muted); }
+.director__text p + p { margin-top: 18px; }
+
+.stats {
+  display: grid;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.stats--production { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(56px, 7vw, 96px); }
+.stats--box { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.stats--box .stat__value { font-size: clamp(30px, 2.9vw, 44px); }
+
+.stat {
+  padding: 32px 28px 34px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background-color var(--t-base) var(--ease);
+}
+.stat:hover { background: rgba(255, 255, 255, 0.015); }
+
+.stat__label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+.stat__value {
+  margin-top: 16px;
+  font-family: "Oswald", "Noto Sans SC", sans-serif;
+  font-size: clamp(34px, 3.6vw, 52px);
+  font-weight: 500;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.stat__value small {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+.stat__value--text {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.2;
+  white-space: normal;
+  text-transform: uppercase;
+}
+.stat__detail { margin-top: 12px; font-size: 14px; color: var(--text-muted); }
