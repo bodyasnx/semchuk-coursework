@@ -39,6 +39,8 @@ const TRANSLATIONS = {
     "nav.boxoffice": "Касові збори",
     "nav.menu": "Меню",
     "lang.label": "Мова сайту",
+        "theme.toLight": "Увімкнути світлу тему",
+    "theme.toDark": "Увімкнути темну тему",
 
     "hero.eyebrow": "Фан-портал · Фільм 2026 року",
     "hero.tagline": "Ніхто не пам’ятає його імені. Місто все ще потребує героя.",
@@ -159,6 +161,8 @@ const TRANSLATIONS = {
     "nav.boxoffice": "Box Office",
     "nav.menu": "Menu",
     "lang.label": "Site language",
+        "theme.toLight": "Switch to light theme",
+    "theme.toDark": "Switch to dark theme",
 
     "hero.eyebrow": "Fan Portal · A 2026 Film",
     "hero.tagline": "No one remembers his name. The city still needs a hero.",
@@ -279,6 +283,8 @@ const TRANSLATIONS = {
     "nav.boxoffice": "Taquilla",
     "nav.menu": "Menú",
     "lang.label": "Idioma del sitio",
+        "theme.toLight": "Activar el tema claro",
+    "theme.toDark": "Activar el tema oscuro",
 
     "hero.eyebrow": "Portal de fans · Película de 2026",
     "hero.tagline": "Nadie recuerda su nombre. La ciudad aún necesita un héroe.",
@@ -400,6 +406,8 @@ const TRANSLATIONS = {
     "nav.boxoffice": "Bilheteria",
     "nav.menu": "Menu",
     "lang.label": "Idioma do site",
+        "theme.toLight": "Ativar o tema claro",
+    "theme.toDark": "Ativar o tema escuro",
 
     "hero.eyebrow": "Portal de fãs · Filme de 2026",
     "hero.tagline": "Ninguém se lembra do nome dele. A cidade ainda precisa de um herói.",
@@ -521,6 +529,8 @@ const TRANSLATIONS = {
     "nav.boxoffice": "Box-office",
     "nav.menu": "Menu",
     "lang.label": "Langue du site",
+        "theme.toLight": "Activer le thème clair",
+    "theme.toDark": "Activer le thème sombre",
 
     "hero.eyebrow": "Portail des fans · Film de 2026",
     "hero.tagline": "Personne ne se souvient de son nom. La ville a toujours besoin d’un héros.",
@@ -642,6 +652,8 @@ const TRANSLATIONS = {
     "nav.boxoffice": "Einspielergebnis",
     "nav.menu": "Menü",
     "lang.label": "Sprache der Website",
+        "theme.toLight": "Helles Design aktivieren",
+    "theme.toDark": "Dunkles Design aktivieren",
 
     "hero.eyebrow": "Fanportal · Ein Film aus dem Jahr 2026",
     "hero.tagline": "Niemand erinnert sich an seinen Namen. Die Stadt braucht trotzdem einen Helden.",
@@ -763,6 +775,8 @@ const TRANSLATIONS = {
     "nav.boxoffice": "票房",
     "nav.menu": "菜单",
     "lang.label": "网站语言",
+        "theme.toLight": "切换到浅色主题",
+    "theme.toDark": "切换到深色主题",
 
     "hero.eyebrow": "影迷门户 · 2026 年电影",
     "hero.tagline": "没有人记得他的名字。但这座城市仍然需要英雄。",

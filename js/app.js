@@ -7,6 +7,7 @@
  * 5. Scroll-reveal анімації (IntersectionObserver)
  * 6. Липкий хедер, активне посилання навігації, мобільне меню
  * 7. Модальне вікно з трейлером YouTube
+ * 8. Перемикач теми (Dark Cinema / Light Editorial)
  */
 (function () {
   "use strict";
@@ -17,6 +18,7 @@
      Налаштування
      --------------------------------------------------------- */
   const STORAGE_KEY = "bnd-lang";
+    const THEME_KEY = "bnd-theme";
   const FADE_MS = 180;          // тривалість згасання тексту при зміні мови
   const COUNT_MS = 1800;        // тривалість анімації лічильників
 
@@ -404,11 +406,48 @@
   }
 
   /* =========================================================
+     8. ПЕРЕМИКАЧ ТЕМИ
+     ========================================================= */
+  const THEME_COLORS = { dark: "#090a0f", light: "#f6f7f9" };
+
+  function applyTheme(theme) {
+    root.dataset.theme = theme;
+    const toggle = document.getElementById("themeToggle");
+    if (toggle) {
+      const isLight = theme === "light";
+      toggle.setAttribute("aria-pressed", String(isLight));
+      // підпис кнопки описує дію, яку вона виконає, — і теж перекладається
+      toggle.dataset.i18nAriaLabel = isLight ? "theme.toDark" : "theme.toLight";
+      toggle.setAttribute("aria-label", t(toggle.dataset.i18nAriaLabel));
+    }
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", THEME_COLORS[theme]);
+  }
+
+  function initTheme() {
+    let theme = "dark"; // Dark Cinema Mode — за замовчуванням
+    try {
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved === "light" || saved === "dark") theme = saved;
+    } catch (e) { /* ігноруємо */ }
+    applyTheme(theme);
+
+    const toggle = document.getElementById("themeToggle");
+    if (!toggle) return;
+    toggle.addEventListener("click", () => {
+      const next = root.dataset.theme === "light" ? "dark" : "light";
+      applyTheme(next);
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* ігноруємо */ }
+    });
+  }
+
+  /* =========================================================
      ІНІЦІАЛІЗАЦІЯ
      ========================================================= */
   function init() {
     buildSwitcher();
     currentLang = readStoredLang() || DEFAULT_LANG; // перший візит → українська
+    initTheme();
     applyTranslations(currentLang);
     initHeader();
     initReveal();

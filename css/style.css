@@ -256,6 +256,28 @@ ul, ol { list-style: none; }
 
 .header__actions { display: flex; align-items: center; gap: 12px; }
 
+/* --- Перемикач теми --- */
+.theme-toggle {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--text);
+  transition: border-color var(--t-fast) var(--ease), background-color var(--t-fast) var(--ease);
+}
+.theme-toggle:hover { border-color: var(--line-hover); background: var(--hover); }
+.theme-toggle__icon {
+  position: absolute;
+  transition: opacity var(--t-base) var(--ease), transform var(--t-base) var(--ease);
+}
+/* темна тема → показуємо сонце (клік увімкне світлу) */
+.theme-toggle__icon--moon { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+:root[data-theme="light"] .theme-toggle__icon--sun { opacity: 0; transform: rotate(90deg) scale(0.6); }
+:root[data-theme="light"] .theme-toggle__icon--moon { opacity: 1; transform: none; }
+
 /* --- Перемикач мов --- */
 .lang { position: relative; }
 
@@ -885,9 +907,10 @@ html:not(.is-ready) .reveal { opacity: 1; transform: none; }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .stats--box { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nav__list { gap: 24px; }
+    .lang__native { display: none; } /* лишаємо лише код мови — місце для довгих слів у меню */
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .burger { display: block; }
   .lang__native { display: none; }
 
@@ -925,6 +948,9 @@ html:not(.is-ready) .reveal { opacity: 1; transform: none; }
     color: var(--text);
   }
   .nav__link::after { display: none; }
+  }
+
+@media (max-width: 900px) {
 
   .hero__content,
   .story__grid,

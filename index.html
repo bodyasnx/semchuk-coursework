@@ -19,6 +19,13 @@
         imagesizes="(max-width: 1240px) calc(100vw - 40px), 1144px" fetchpriority="high">
 
   <link rel="stylesheet" href="css/style.css">
+    <!-- Тему застосовуємо ще до відмальовування, щоб не було «спалаху» темної теми -->
+  <script>
+    try {
+      var savedTheme = localStorage.getItem("bnd-theme");
+      if (savedTheme === "light" || savedTheme === "dark") document.documentElement.dataset.theme = savedTheme;
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="a11y.skip">Перейти до вмісту</a>
@@ -40,6 +47,17 @@
       </nav>
 
       <div class="header__actions">
+                <!-- Theme switcher -->
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false"
+                data-i18n-aria-label="theme.toLight" aria-label="Увімкнути світлу тему">
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+        </button>
         <!-- Language switcher -->
         <div class="lang" id="langSwitcher">
           <button class="lang__toggle" id="langToggle" type="button"
