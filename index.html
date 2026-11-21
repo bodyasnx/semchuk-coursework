@@ -14,14 +14,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Шрифти вантажаться без блокування рендерингу; Noto Sans SC — лише для китайської (див. app.js) -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap"></noscript>
-
-  <!-- Головне зображення першого екрана завантажується якнайраніше -->
-  <link rel="preload" as="image" type="image/webp"
-        imagesrcset="assets/hero-banner-800.webp 800w, assets/hero-banner-1400.webp 1400w, assets/hero-banner-2400.webp 2400w"
-        imagesizes="(max-width: 1240px) calc(100vw - 40px), 1144px" fetchpriority="high">
+    <!-- Шрифти: media="print" дає найнижчий пріоритет і не блокує перший екран;
+       після завантаження стиль вмикається для всіх (media="all"). Noto Sans SC — лише для китайської (див. app.js) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap"></noscript>
 
   <link rel="stylesheet" href="css/style.css">
     <!-- Тему застосовуємо ще до відмальовування, щоб не було «спалаху» темної теми -->
@@ -412,7 +408,7 @@
       <a class="modal__fallback" id="trailerFallback" href="#" target="_blank" rel="noopener" data-i18n="trailer.fallback">Відкрити на YouTube ↗</a>
     </div>
   </div>
-  <script src="js/translations.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/translations.js" defer></script>
+  <script src="js/app.js" defer></script>
 </body>
 </html>
