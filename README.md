@@ -4,28 +4,54 @@
 
 Мінімалістичний односторінковий сайт (landing page) про фільм *Spider-Man: Brand New Day* (2026) з власним i18n-рушієм на чистому JavaScript.
 
+## 🌐 Демо
+
+**https://brandnewday-coursework.netlify.app**
+
+Сайт розгорнуто на Netlify з автоматичним деплоєм: кожен `git push` у гілку `main` оновлює опубліковану версію.
+
 ## Можливості
 
+### Багатомовність (i18n)
 - 7 мов інтерфейсу: українська (за замовчуванням), English, Español, Português, Français, Deutsch, 中文
 - Миттєве перемикання мови без перезавантаження сторінки (атрибути `data-i18n`, `data-i18n-alt`, `data-i18n-aria-label`)
 - Автоматичне оновлення `<html lang>` і `<title>`
 - Збереження вибраної мови в `localStorage`
+- Плавне згасання тексту під час зміни мови
 - Форматування сум через `Intl.NumberFormat` відповідно до локалі (`$2.5B`, `2,5 млрд $`, `$25亿`)
-- Scroll-reveal анімації (`IntersectionObserver`), анімація лічильників, підтримка `prefers-reduced-motion`
+- Шрифт для ієрогліфів (Noto Sans SC) підвантажується лише для китайської мови
 - Доступний перемикач мов (клавіатура: ↑ ↓ Home End Enter Esc)
-- Адаптивна верстка (desktop / tablet / mobile)
+
+### Інтерфейс
+- Дві теми: Dark Cinema (за замовчуванням) і Light Editorial, вибір зберігається в `localStorage`
+- Індикатор прогресу прокручування під хедером
+- Scroll-reveal анімації (`IntersectionObserver`) і анімація лічильників касових зборів
+- Модальне вікно з трейлером YouTube
+- Адаптивна верстка (desktop / tablet / mobile) і бургер-меню
+- Підтримка `prefers-reduced-motion`
+
+### Продуктивність
+- Зображення у форматі WebP з адаптивними розмірами (`<picture>`, `srcset`, `sizes`)
+- Неблокуюче завантаження шрифтів і `preload` головного зображення
+- Ліниве завантаження зображень (`loading="lazy"`)
+
+## Технології
+
+HTML5 · CSS3 (Custom Properties, Grid, Flexbox) · JavaScript (ES6+, без фреймворків) · Intl API · Netlify
 
 ## Структура
 
 ```
 ├── index.html            — семантична розмітка з data-i18n атрибутами
-├── css/style.css         — стилі (Custom Properties, Grid/Flexbox, анімації)
+├── css/style.css         — стилі (CSS-змінні, дві теми, адаптивність, анімації)
 ├── js/translations.js    — словник перекладів для 7 мов
-├── js/app.js             — i18n-рушій та інтерактивність
-└── assets/               — зображення
+├── js/app.js             — i18n-рушій, теми, анімації, модальне вікно
+├── assets/               — зображення (JPG + WebP)
+├── favicon.svg / .ico    — іконка сайту
+└── apple-touch-icon.png  — іконка для iOS
 ```
 
-## Запуск
+## Локальний запуск
 
 Відкрийте `index.html` у браузері або скористайтеся розширенням **Live Server** у VS Code.
 
